@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems by Tag</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/problem_list.css') }}">
+</head>
+<body>
+    <a href="/" class="home-icon">
+        <img src="{{ url_for('static', filename='images/icon.svg') }}" alt="Home Icon">
+    </a>
+
+    <h1>Problems for Tag: {{ tag }}</h1>
+    
+    <table id="problemTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Difficulty</th>
+                <th>Tags</th>
+                <th>Link</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for problem in problems %}
+                <tr>
+                    <td>{{ problem['title'] }}</td>
+                    <td>{{ problem['difficulty'] }}</td>
+                    <td>{{ ", ".join(problem['tags']) }}</td>
+                    <td><a href="{{ problem['link'] }}" target="_blank">Problem Link</a></td>
+                    <td>{{ problem['platform'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="/all">Back to Topics</a>
+</body>
+</html>
